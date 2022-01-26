@@ -13,7 +13,7 @@ variables:
 steps:
 - checkout: self
 
-- script: 'Check file is available' |
+- script: |
   echo 'Demonstrate issues finding a local file when running AzureResourceManagerTemplateDeployment@3 task.' && \
   echo 'First show that file is present. File contents for file at $(deployment_template_path).' && \
   echo '<--- file contents below --->' && \

@@ -14,11 +14,12 @@ steps:
 - checkout: self
 
 - script: |
-  echo 'Demonstrate issues finding a local file when running AzureResourceManagerTemplateDeployment@3 task.' && \
-  echo 'First show that file is present. File contents for file at $(deployment_template_path).' && \
-  echo '<--- file contents below --->' && \
-  cat $(deployment_template_path) && \
-  echo '<--- end of file contents --->'
+    echo 'Demonstrate issues finding a local file when running AzureResourceManagerTemplateDeployment@3 task.' && \
+    echo 'First show that file is present. File contents for file at $(deployment_template_path).' && \
+    echo '<--- file contents below --->' && \
+    cat $(deployment_template_path) && \
+    echo '<--- end of file contents --->'
+  displayName: Output file state info
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:

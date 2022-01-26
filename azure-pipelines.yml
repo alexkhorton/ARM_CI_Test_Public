@@ -15,9 +15,12 @@ steps:
 
 - script: |
     echo 'Demonstrate issues finding a local file when running AzureResourceManagerTemplateDeployment@3 task.' && \
-    echo 'First show that file is present. File contents for file at $(deployment_template_path).' && \
+    echo 'Build.Repository.LocalPath value: $(Build.Repository.LocalPath)'
+    echo 'Working directory info (pwd):' && \
+    pwd && \
+    echo 'Working directory contents (ls)' && \
     ls && \
-    echo '<--- file contents below --->' && \
+    echo '<--- file contents for $(deployment_template_path) below --->' && \
     cat $(deployment_template_path) && \
     echo '<--- end of file contents --->'
   displayName: Output file state info

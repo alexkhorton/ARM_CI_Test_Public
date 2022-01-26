@@ -28,6 +28,6 @@ steps:
     location: 'West US'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/alexkhorton/ARM_CI_Test_Public/main/CreateWebApp/azuredeploy.json'
-    overrideParameters: '-projectName AzureCITestPublic'
+    overrideParameters: '-projectName ARM_Test_P'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'

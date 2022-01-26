@@ -1,22 +1,24 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
 pool:
   vmImage: ubuntu-latest
+  
+variables:
+- name: deployment_template_path
+  value: $(Build.Repository.LocalPath)/azuredeploy.json
+- name: get_local
+  value: Linked artifact
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- checkout: self
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- script: 'Check file is available' |
+  echo 'Demonstrate issues finding a local file when running AzureResourceManagerTemplateDeployment@3 task.' && \
+  echo 'First show that file is present. File contents for file at $(deployment_template_path).' && \
+  echo '<--- file contents below --->' && \
+  cat $(deployment_template_path) && \
+  echo '<--- end of file contents --->'
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
@@ -26,8 +28,8 @@ steps:
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'AzureCITest-Public'
     location: 'West US'
-    templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/alexkhorton/ARM_CI_Test_Public/main/CreateWebApp/azuredeploybarebones.json'
+    templateLocation: '$(get_local)'
+    csmFileLink: '$(deployment_template_path)'
     overrideParameters: '' #'-projectName armtestp'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'

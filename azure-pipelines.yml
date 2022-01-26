@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'AzureRmPipeline-conn'
+    subscriptionId: '6d1de2e7-fc0b-4751-a617-94abc1ba9c80'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'AzureCITest-Public'
+    location: 'West US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/alexkhorton/ARM_CI_Test_Public/main/CreateWebApp/azuredeploy.json'
+    overrideParameters: '-projectName AzureCITest-Public'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'

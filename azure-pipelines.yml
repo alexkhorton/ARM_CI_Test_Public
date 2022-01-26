@@ -27,7 +27,7 @@ steps:
     resourceGroupName: 'AzureCITest-Public'
     location: 'West US'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/alexkhorton/ARM_CI_Test_Public/main/CreateWebApp/azuredeploy.json'
+    csmFileLink: 'https://raw.githubusercontent.com/alexkhorton/ARM_CI_Test_Public/main/CreateWebApp/azuredeploybarebones.json'
     overrideParameters: '-projectName armtestp'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'

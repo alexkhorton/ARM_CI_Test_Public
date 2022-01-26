@@ -6,7 +6,7 @@ pool:
   
 variables:
 - name: deployment_template_path
-  value: $(Build.Repository.LocalPath)/azuredeploy.json
+  value: $(Build.Repository.LocalPath)/azuredeploybarebones.json
 - name: get_local
   value: Linked artifact
 
